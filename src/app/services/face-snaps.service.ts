@@ -55,4 +55,21 @@ export class FaceSnapsService {
       faceSnap.isSnapped = false;
     }
   }
+
+  addFaceSnap(snapForm: {
+    title: string;
+    description: string;
+    imageUrl: string;
+    location?: string;
+  }): void {
+    const newId = Math.max(...this.faceSnaps.map((fs) => fs.id)) + 1;
+    const newFaceSnap: FaceSnap = {
+      ...snapForm,
+      createdDate: new Date(),
+      id: newId,
+      snaps: 0,
+      isSnapped: false,
+    };
+    this.faceSnaps.push(newFaceSnap);
+  }
 }
